@@ -19,7 +19,6 @@ env/
 .flet/
 build/
 storage/
-uv.lock
 
 # IDE
 .idea/
