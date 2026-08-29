@@ -1,0 +1,26 @@
+[project]
+name = "conversioni-alcoolimetriche"
+version = "1.0.0"
+description = "Calcolo professionale della diluizione dell'alcool etilico per preparazioni galeniche."
+requires-python = ">=3.12"
+authors = [
+    { name = "Stefano Perna", email = "stefanoperna93farmacia@gmail.com" }
+]
+dependencies = [
+    "flet"
+]
+
+[dependency-groups]
+dev = [
+    "flet-cli",
+    "flet-desktop",
+    "flet-web"
+]
+
+[tool.flet.metadata]
+title = "Conversioni Alcoolimetriche"
+
+[tool.flet]
+org = "dev.flet"
+company = "Stefano Perna"
+copyright = "Copyright (C) 2026 by Stefano Perna"

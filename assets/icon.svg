@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">Conversioni alcoolimetriche</title>
+  <rect width="512" height="512" rx="104" fill="#0f766e"/>
+  <path d="M202 94h108v32l-26 40v71l91 143a34 34 0 0 1-29 52H166a34 34 0 0 1-29-52l91-143v-71l-26-40V94Z" fill="#f8fafc"/>
+  <path d="M177 342h158l40 63H137l40-63Z" fill="#5eead4"/>
+  <path d="M211 257h90" stroke="#0f766e" stroke-width="20" stroke-linecap="round"/>
+  <circle cx="331" cy="181" r="18" fill="#5eead4"/>
+  <circle cx="367" cy="225" r="11" fill="#5eead4"/>
+</svg>
