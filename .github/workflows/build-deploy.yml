@@ -1,0 +1,68 @@
+name: Conversioni Alcoolimetriche — Web Build e GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+env:
+  UV_PYTHON: "3.12"
+  FLET_CLI_NO_RICH_OUTPUT: "1"
+
+jobs:
+  build:
+    name: Build dell'app web Flet
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+
+    steps:
+      - name: Checkout del repository
+        uses: actions/checkout@v4
+
+      - name: Configura uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Compila Conversioni Alcoolimetriche
+        shell: bash
+        run: |
+          uv run flet build web --yes --verbose \
+            --base-url "${GITHUB_REPOSITORY#*/}" \
+            --route-url-strategy hash
+
+      - name: Carica l'artefatto per GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/web
+          name: conversioni-alcoolimetriche-web
+          retention-days: 20
+
+  deploy:
+    name: Pubblica su GitHub Pages
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Configura GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Pubblica Conversioni Alcoolimetriche
+        id: deployment
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: conversioni-alcoolimetriche-web
